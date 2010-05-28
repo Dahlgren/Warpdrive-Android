@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Warpdrive</string>
+	<string name="abort">Avbryt</string>
+	<string name="back">Tillbaka</string>
+	<string name="refresh">Uppdatera</string>
+	<string name="loading">Laddar...</string>
+
+	<!-- About -->
+	<string name="about">Om</string>
+	<string name="aboutText">En applikation utvecklad av Björn
+		Dahlgren\n\nBjörn Dahlgren\nhttp://dahlgren.at\nbjorn@dahlgren.at</string>
+		
+	<!-- Latest -->
+	<string name="latest">Senaste</string>
+	
+	<!-- Random -->
+	<string name="random">Slumpade</string>
+	
+	<!-- Top -->
+	<string name="top">Top</string>
+
+	<!-- Settings -->
+	<string name="settings">Inställningar</string>
+	<string name="save">Spara</string>
+</resources>
