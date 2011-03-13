@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content" android:layout_height="wrap_content">
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:background="@drawable/quote_background" android:padding="8sp">
 	<TextView android:id="@+id/quote_id" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:text="ID"/>
+		android:layout_height="wrap_content" android:text="ID"
+		android:textColor="@android:color/black" />
 	<TextView android:id="@+id/quote_rank" android:layout_height="wrap_content"
-		android:layout_toRightOf="@id/quote_id" android:layout_width="fill_parent" android:gravity="right"
-		android:text="RANK" />
+		android:layout_toRightOf="@id/quote_id" android:layout_width="fill_parent"
+		android:gravity="right" android:text="RANK" android:textColor="@android:color/black" />
 	<TextView android:id="@+id/quote_text" android:layout_below="@id/quote_id"
 		android:layout_height="wrap_content" android:layout_width="wrap_content"
-		android:text="TEXT" />
+		android:text="TEXT" android:textColor="@android:color/black"
+		android:lineSpacingExtra="4sp" android:paddingTop="2sp" android:textSize="12sp" />
 </RelativeLayout>

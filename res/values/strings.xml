@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<!-- Common -->
 	<string name="app_name">Warpdrive</string>
-	<string name="abort">Avbryt</string>
-	<string name="back">Tillbaka</string>
 	<string name="refresh">Uppdatera</string>
 	<string name="loading">Laddar...</string>
+	<string name="share">Dela</string>
 
 	<!-- About -->
 	<string name="about">Om</string>
 	<string name="aboutText">En applikation utvecklad av Björn
-		Dahlgren\n\nBjörn Dahlgren\nhttp://dahlgren.at\nbjorn@dahlgren.at</string>
-		
+		Dahlgren\n\nBjörn
+		Dahlgren\nhttp://dahlgren.at\nbjorn@dahlgren.at</string>
+
+	<!-- Comments -->
+	<string name="comments">Kommentarer</string>
+
 	<!-- Latest -->
 	<string name="latest">Senaste</string>
-	
+
 	<!-- Random -->
 	<string name="random">Slumpade</string>
-	
+
+	<!-- Search -->
+	<string name="search">Sök</string>
+	<string name="searchLabel">Sök citat</string>
+	<string name="searchHint">Sökfras...</string>
+
 	<!-- Top -->
 	<string name="top">Top</string>
 

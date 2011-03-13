@@ -23,7 +23,8 @@ public class ShowComments extends Page {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		offset = savedInstanceState.getInt("offset", 1);
+		if (savedInstanceState != null)
+			offset = savedInstanceState.getInt("offset", 1);
 	}
 	
 	protected void refresh() {

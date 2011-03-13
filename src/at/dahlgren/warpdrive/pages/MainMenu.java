@@ -11,10 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import at.dahlgren.warpdrive.DefaultListAdapter;
 import at.dahlgren.warpdrive.Page;
 import at.dahlgren.warpdrive.R;
 
@@ -22,24 +21,27 @@ public class MainMenu extends Page {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.mainmenu);
+		setContentView(R.layout.pages);
 		
 		ArrayList<MainMenuItem> arr = new ArrayList<MainMenuItem>();
 		arr.add(new MainMenuItem(getResources().getString(R.string.latest), new Intent(this, Latest.class)));
-		arr.add(new MainMenuItem(getResources().getString(R.string.random), new Intent(this, Random.class)));
 		arr.add(new MainMenuItem(getResources().getString(R.string.top), new Intent(this, Top.class)));
+		arr.add(new MainMenuItem(getResources().getString(R.string.random), new Intent(this, Random.class)));
+		arr.add(new MainMenuItem(getResources().getString(R.string.search), new Intent(this, Search.class)));
 
-		ListView list = new ListView(this);
+		ListView list = (ListView) this.findViewById(R.id.list);
 		list.setAdapter(new ListAdapter(this, arr));
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-					MainMenu.this.startActivity(((MainMenuItem) parent.getAdapter().getItem(position)).intent);
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {	
+				MainMenuItem item = ((MainMenuItem) parent.getAdapter().getItem(position));
+				if (item.intent.getComponent().getClassName().contentEquals(Search.class.getName()))
+					startSearch(null, false, null, false);
+				else
+					MainMenu.this.startActivity(item.intent);
 			}
 		});
-
-		this.setContentView(list);
 	}
 
 	protected class MainMenuItem {
@@ -69,39 +71,24 @@ public class MainMenu extends Page {
 		return false;
 	}
 
-	private class ListAdapter extends BaseAdapter {
-
-		protected Context context;
-		private ArrayList<MainMenuItem> arr;
+	private class ListAdapter extends DefaultListAdapter<MainMenuItem> {
 
 		public ListAdapter(Context c, ArrayList<MainMenuItem> arr) {
-			this.context = c;
-			this.arr = arr;
+			super(c, arr);
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			LinearLayout layout = new LinearLayout(context);
-			TextView text = new TextView(context);
-			text.setText(arr.get(position).text);
-			text.setTextSize(getResources().getDimension(R.dimen.menuMain));
-			layout.addView(text);
-			return layout;
-		}
-
-		@Override
-		public int getCount() {
-			return arr.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return arr.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
+			View view;
+			if (convertView != null)
+				view = convertView;
+			else
+				view= View.inflate(context, R.layout.menuitem, null);
+			
+			TextView text = (TextView) view.findViewById(R.id.name);
+			MainMenuItem item = this.getItem(position);
+			text.setText(item.text);
+			return view;
 		}
 	}	
 }

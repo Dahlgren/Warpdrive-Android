@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -54,6 +55,21 @@ public class sfRequest{
 	public String getMethod(){
 		return this.method;
 	}
+	
+	public sfRequest clone() {
+		sfRequest request = new sfRequest(this.httpClient);
+		request.setUrl(this.url);
+		request.setMethod(this.method);
+		
+		Iterator<NameValuePair> iter = this.params.iterator();
+		
+		while (iter.hasNext()) {
+			NameValuePair param = iter.next();
+			request.addParam(param.getName(), param.getValue());
+		}
+		
+		return request;
+	}
 
 	/**
 	 * Adding parameter
@@ -79,7 +95,7 @@ public class sfRequest{
 		try {
 			if (this.getMethod() == null)
 				this.setMethod("GET");
-			if (this.method.compareToIgnoreCase("GET") == 0){
+			if (this.method.compareTo("GET") == 0){
 				String url = this.url;
 
 				if (params.size() > 0) {
@@ -98,7 +114,7 @@ public class sfRequest{
 					|| this.method.compareToIgnoreCase("DELETE") == 0){
 				this.addParam("sf_method", this.getMethod());
 				this.postRequest = new HttpPost(this.getUrl());
-				this.postRequest.setEntity(new UrlEncodedFormEntity(this.params));
+				this.postRequest.setEntity(new UrlEncodedFormEntity(this.params, "UTF-8"));
 				this.response = this.httpClient.execute(this.postRequest);
 			}
 			HttpEntity entity = response.getEntity();
